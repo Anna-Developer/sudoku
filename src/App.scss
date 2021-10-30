@@ -1,0 +1,24 @@
+$fontURL: "./fonts/neucha-v12-latin-regular.";
+$bgApp: "#333";
+
+@mixin wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@font-face {
+    font-family: "Neucha";
+    font-style: normal;
+    font-weight: 400;
+    src: url($fontURL + "eot"); /* IE9 Compat Modes */
+    src: local("Neucha"), url($fontURL + "eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */ url($fontURL + "woff2") format("woff2"),
+        /* Super Modern Browsers */ url($fontURL + "woff") format("woff"),
+        /* Modern Browsers */ url($fontURL + "ttf") format("truetype"),
+        /* Safari, Android, iOS */ url($fontURL + "svg#Neucha") format("svg"); /* Legacy iOS */
+}
+.App {
+    @include wrap();
+    background: $bgApp;    
+}
