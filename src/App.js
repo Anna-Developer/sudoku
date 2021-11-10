@@ -1,79 +1,18 @@
+import { Route } from 'react-router';
 import './App.scss';
+import GameOver from './components/GameOver';
+import Main from './components/Main';
+import Menu from './components/Menu';
+import Win from './components/Win';
 
 function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1 className="title">Sudoku</h1>
-        <div className="gameArea">
-          <div className="blocks">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-          </div>
-          <div className="blocks">
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-          </div>
-          <div className="blocks">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-          </div>
-          <div className="blocks">
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-          </div>
-          <div className="blocks">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-          </div>
-          <div className="blocks">
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-          </div>
-        </div>
-        <div className="numbers">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-          <div>6</div>
-        </div>
-        <div className="errors">
-          <p>
-            Errors: <span><span>0</span> / 3</span>
-          </p>
-        </div>
+        <Route exact path={['/', '/menu']} render={() => <Menu />} />
+        <Route path="/main" render={() => <Main />} />
+        <Route path="/win" render={() => <Win />} />
+        <Route path="/gameOver" render={() => <GameOver />} />
       </div>
     </div>
   );
