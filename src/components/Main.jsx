@@ -1,29 +1,17 @@
-const Main = () => {
-  const tbodyData = [
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  ];
-  const numbersData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const tbody = tbodyData.map((tr, trIdx) => {
+const Main = (props) => {
+  const tbody = props.state.matrix.map((tr, trIdx) => {
     return (
-      <tr>
+      <tr key={trIdx}>
         {tr.map((td, tdIdx) => {
-          return <td>{td}</td>;
+          return <td key={`${trIdx}_${tdIdx}`}>{td || ""}</td>;
         })}
       </tr>
     );
   });
-  const numbers = numbersData.map((li, listItdx) => {
-    return <li>{li}</li>;
+  const numbers = props.state.numbersData.map((li) => {
+    return <li key={li}>{li}</li>;
   });
-  const errors = 0;
+
   return (
     <div className="main">
       <h1 className="title">Sudoku</h1>
@@ -32,7 +20,7 @@ const Main = () => {
       </table>
       <ul className="numbers">{numbers}</ul>
       <div className="errors">
-        Errors: <span>{errors} / 3</span>
+        Errors: <span>{props.state.errors} / 3</span>
       </div>
     </div>
   );
