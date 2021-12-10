@@ -6,12 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import store from './store/store'
 
-ReactDOM.render(
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
-    <App state={store.getState()} />
-  </BrowserRouter>,
-  document.getElementById('root')
-);
+function render(state) {
+  ReactDOM.render(
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <App matrix={state.matrix.start} values={state.values} errors={state.errors} dispatch={store.dispatch.bind(store)} />
+    </BrowserRouter>,
+    document.getElementById('root')
+  );
+}
+store.subscribe(() => render(store.getState()));
+render(store.getState());
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -45,12 +45,17 @@ li {
 .numbers li {
     @include wrap();
 }
-
 .btn,
-.gameArea td,
 .numbers li {
     @include hoverAnimation();
 }
+.gameAreaTd {
+    background-color: $bgApp;
+}
+.activeInput {
+    background-color: $detailsColor;
+}
+
 .container {
     max-width: 540px;
     width: 95%;
