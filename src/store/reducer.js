@@ -1,3 +1,15 @@
+const SET_VALUE = 'SET-VALUE';
+const START_GAME = 'START-GAME';
+
+export const setValueActionCreator = (value, idxArr) => {
+    return {
+        type: SET_VALUE,
+        value,
+        idxArr
+    }
+}
+export const startGameActionCreator = () => ({ type: START_GAME });
+
 const data = {
     chooseMatrix() {
         return Math.floor(Math.random() * this.dataMatrix.length)
@@ -114,7 +126,7 @@ const getInitialState = (data) => {
     }
 }
 
-const reducer = (state = getInitialState(data), action = { type: "START GAME" }) => {
+const reducer = (state = getInitialState(data), action = { type: "START-GAME" }) => {
     switch (action.type) {
         case "SET-VALUE":
             const newState = {
@@ -125,19 +137,18 @@ const reducer = (state = getInitialState(data), action = { type: "START GAME" })
                 }
             }
             let value = +action.value;
-            if (state.matrix.end[action.idxArr[0]][action.idxArr[1]] === value) {
-                newState.matrix.start[action.idxArr[0]][action.idxArr[1]] = value;
-            } else {
-                if (newState.errors < 3) {
-                    newState.errors += 1;
+            if (state.matrix.start[action.idxArr[0]][action.idxArr[1]] === 0) {
+                if (state.matrix.end[action.idxArr[0]][action.idxArr[1]] === value) {
+                    newState.matrix.start[action.idxArr[0]][action.idxArr[1]] = value;
+                } else {
+                    newState.errors++;
                 }
             }
             return newState
-        case "START GAME":
+        case "START-GAME":
             return getInitialState(data);
     }
-
-
+    return state;
 }
 
 export default reducer

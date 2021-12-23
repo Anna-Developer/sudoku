@@ -1,12 +1,37 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  setValueActionCreator,
+  startGameActionCreator,
+} from "../store/reducer";
 
 const Main = (props) => {
+  const isWin = () => {
+    for (let elem of props.matrix) {
+      if (elem.includes(0)) {
+        return;
+      }
+    }
+    props.dispatch(startGameActionCreator());
+    props.history.push("/win");
+  };
+  const isGameOver = () => {
+    if (props.errors < 3) {
+      return;
+    }
+    props.dispatch(startGameActionCreator());
+    props.history.push("/gameOver");
+  };
+  useEffect(() => {
+    isWin();
+    window.onpopstate = () => props.dispatch(startGameActionCreator());
+  }, [props.matrix]);
+  useEffect(() => {
+    isGameOver();
+  }, [props.errors]);
   const setValue = (e) => {
-    const action = {
-      type: "SET-VALUE",
-      value: e.target.dataset.value,
-      idxArr: idxArr,
-    };
+    const action = setValueActionCreator(e.target.dataset.value, idxArr);
     props.dispatch(action);
   };
   const [idxArr, newIdxArr] = useState([0, 0]);
@@ -57,4 +82,4 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+export default withRouter(Main);
