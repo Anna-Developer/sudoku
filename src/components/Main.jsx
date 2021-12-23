@@ -25,11 +25,9 @@ const Main = (props) => {
   };
   useEffect(() => {
     isWin();
-    window.onpopstate = () => props.dispatch(startGameActionCreator());
-  }, [props.matrix]);
-  useEffect(() => {
     isGameOver();
-  }, [props.errors]);
+    window.onpopstate = () => props.dispatch(startGameActionCreator());
+  }, [props.matrix, props.errors]);
   const setValue = (e) => {
     const action = setValueActionCreator(e.target.dataset.value, idxArr);
     props.dispatch(action);
