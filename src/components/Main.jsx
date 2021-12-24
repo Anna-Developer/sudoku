@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import {
   setValueActionCreator,
@@ -68,14 +69,20 @@ const Main = (props) => {
 
   return (
     <div className="main">
-      <h1 className="title">Sudoku</h1>
+      <h1 className="title">Судоку</h1>
       <table className="gameArea">
         <tbody className="blocks">{tbody}</tbody>
       </table>
       <ul className="numbers">{numbers}</ul>
       <div className="errors">
-        Errors: <span>{props.errors} / 3</span>
+        Ошибки: <span>{props.errors} / 3</span>
       </div>
+      <NavLink to="/menu" className="btn">
+        В меню
+      </NavLink>
+      <NavLink to="/rules" className="btn">
+        Правила
+      </NavLink>
     </div>
   );
 };

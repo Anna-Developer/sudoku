@@ -1,15 +1,16 @@
 import { NavLink } from "react-router-dom";
-
+import cool from "../images/cool_big.png"
 const Win = () => {
   return (
     <div className="default win">
-      <h1>You win!</h1>
+      <img src={cool} className="sad-cool-img cool-img"/>
+      <h1>Ты выиграл!</h1>
       <div className="btns">
         <NavLink to="/menu" className="btn">
-          Menu
+          Меню
         </NavLink>
         <NavLink to="/main" className="btn">
-          Play again
+          Играть еще раз
         </NavLink>
       </div>
     </div>

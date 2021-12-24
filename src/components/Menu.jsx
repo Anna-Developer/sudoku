@@ -2,10 +2,14 @@ import { NavLink } from "react-router-dom";
 
 const Menu = () => {
   return (
-    <div className="default">
-      <h1>Sudoku</h1>
+    <div className="default menu">
+      <h1>Судоку</h1>
+      <p>Игра, которая развивает твой мозг</p>
       <NavLink to="/main" className="btn">
-        Play
+        Играть
+      </NavLink>
+      <NavLink to="/rules" className="btn">
+        Правила
       </NavLink>
     </div>
   );
