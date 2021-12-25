@@ -28,7 +28,6 @@ const Main = (props) => {
     isWin();
     isGameOver();
     window.onpopstate = () => props.dispatch(startGameActionCreator());
-    window.onreset = () => props.history.push("/menu");
   }, [props.matrix, props.errors]);
   const setValue = (e) => {
     const action = setValueActionCreator(e.target.dataset.value, idxArr);
