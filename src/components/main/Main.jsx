@@ -2,10 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import {
-  setValueActionCreator,
-  startGameActionCreator,
-} from "../store/reducer";
 
 const Main = (props) => {
   const isWin = () => {
@@ -14,24 +10,23 @@ const Main = (props) => {
         return;
       }
     }
-    props.dispatch(startGameActionCreator());
+    props.startGame();
     props.history.push("/win");
   };
   const isGameOver = () => {
     if (props.errors < 3) {
       return;
     }
-    props.dispatch(startGameActionCreator());
+    props.startGame();
     props.history.push("/gameOver");
   };
   useEffect(() => {
     isWin();
     isGameOver();
-    window.onpopstate = () => props.dispatch(startGameActionCreator());
+    window.onpopstate = () => props.startGame();
   }, [props.matrix, props.errors]);
   const setValue = (e) => {
-    const action = setValueActionCreator(e.target.dataset.value, idxArr);
-    props.dispatch(action);
+    props.setValue(e.target.dataset.value, idxArr);
   };
   const [idxArr, newIdxArr] = useState([0, 0]);
   const setActiveInput = (a, b) => {
